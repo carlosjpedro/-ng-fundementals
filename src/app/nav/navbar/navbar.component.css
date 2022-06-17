@@ -1,0 +1,8 @@
+.nav.navbar-nav{
+  font-size: 1.25em;
+}
+#searchForm {
+  margin-right: 10em;
+}
+
+@media (max-width: 1200px) {#searchForm {display:none}}
