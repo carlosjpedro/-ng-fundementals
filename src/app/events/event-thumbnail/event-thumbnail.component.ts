@@ -9,4 +9,12 @@ import {EventModel} from "../models/event.model";
 })
 export class EventThumbnailComponent {
   @Input() event!: EventModel;
+
+  public get startTimeCssClass() {
+    const earlyStart = this.event.time === "8:00 am";
+    return {
+      green: earlyStart,
+      bold: earlyStart,
+    };
+  }
 }

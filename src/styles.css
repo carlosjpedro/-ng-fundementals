@@ -32,3 +32,11 @@ button {
 .toast-warning {
   background-color: #f89406;
 }
+
+.green {
+  color : #003300 !important;
+}
+
+.bold {
+  font-weight: bold;
+}

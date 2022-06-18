@@ -3,9 +3,11 @@ export interface EventModel {
   name: string;
   date: string;
   time: string;
-  price: string;
-  imageUrl: string
-  location: LocationModel
+  price: number;
+  imageUrl: string;
+  onlineUrl?:string;
+  location?: LocationModel;
+  sessions:any[]
 }
 
 interface LocationModel {

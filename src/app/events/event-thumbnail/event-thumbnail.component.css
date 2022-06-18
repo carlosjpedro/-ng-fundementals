@@ -5,3 +5,7 @@
 .well div {
   color: #bbb;
 }
+
+.thumbnail {
+  max-height: 20em;
+}
