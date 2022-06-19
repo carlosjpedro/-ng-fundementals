@@ -1,13 +1,13 @@
 export interface EventModel {
   id: number;
   name: string;
-  date: string;
+  date: Date;
   time: string;
   price: number;
   imageUrl: string;
   onlineUrl?:string;
   location?: LocationModel;
-  sessions:any[]
+  sessions:SessionModel[]
 }
 
 interface LocationModel {
@@ -15,3 +15,5 @@ interface LocationModel {
   city: string;
   country: string;
 }
+
+
