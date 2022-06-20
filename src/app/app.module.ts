@@ -15,6 +15,7 @@ import {
   EventService,
   EventThumbnailComponent
 } from "./events";
+import {AuthService} from "./user/auth.service";
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import {
     EventService,
     EventRouteActivatorService,
     EventListResolver,
+    AuthService,
     {
       provide: 'canDeactivateCreateEvent', useValue:
         (component: CreateEventComponent) => {
