@@ -337,4 +337,8 @@ export class EventService {
       ]
     }
   ];
+
+  saveEvent(value: any) {
+    this.EventList.push({...value, id: this.EventList.length + 1} as EventModel);
+  }
 }

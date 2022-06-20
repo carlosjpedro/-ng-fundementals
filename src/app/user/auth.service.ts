@@ -22,10 +22,8 @@ export class AuthService {
     return !!this.currentUser;
   }
 
-  updateCurrentUser(values: any) {
+  updateCurrentUser(firstName: string, lastName: string) {
     if (!this.isAuthenticated) return;
-    this.currentUser!.firstName = values['firstName'];
-    this.currentUser!.lastName = values['lastName'];
-
+    this.currentUser! = {...this.currentUser!, firstName, lastName}
   }
 }

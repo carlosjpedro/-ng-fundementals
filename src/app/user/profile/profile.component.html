@@ -2,13 +2,15 @@
   <h1>Edit Your Profile </h1>
   <hr>
   <div class="col-md-4">
-    <form autocomplete="off" novalidate [formGroup]="profileForm" (ngSubmit)="save(profileForm.value)">
-      <div class="form-group">
+    <form autocomplete="off" novalidate [formGroup]="profileForm" (ngSubmit)="save()">
+      <div class="form-group" [ngClass]="{'error': firstName.invalid && firstName.touched}">
         <label for="firstName">First Name:</label>
+        <em *ngIf=" firstName.touched && firstName.errors?.['required']">Required</em>
+        <em *ngIf="firstName.touched && firstName.errors?.['pattern']">Must start with a letter</em>
         <input id="firstName" type="text" class="form-control" placeholder="First Name..." formControlName="firstName"/>
       </div>
-      <div class="form-group">
-        <label for="lastName">Last Name:</label>
+      <div class="form-group" [ngClass]="{'error': lastName.invalid && lastName.touched}">
+        <label for="lastName">Last Name:</label> <em *ngIf="lastName.invalid&& lastName.touched">Required</em>
         <input id="lastName" type="text" class="form-control" placeholder="Last Name..." formControlName="lastName"/>
       </div>
 

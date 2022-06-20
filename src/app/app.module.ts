@@ -16,12 +16,15 @@ import {
   EventThumbnailComponent
 } from "./events";
 import {AuthService} from "./user/auth.service";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(appRoutes)
   ],
   declarations: [
@@ -31,7 +34,7 @@ import {AuthService} from "./user/auth.service";
     NavbarComponent,
     EventDetailComponent,
     CreateEventComponent,
-    Error404Component
+    Error404Component,
   ],
   providers: [
     EventService,
@@ -45,7 +48,7 @@ import {AuthService} from "./user/auth.service";
             return window.confirm('You sure?');
           return true;
         }
-    }],
+    },],
   bootstrap: [EventsAppComponent]
 })
 

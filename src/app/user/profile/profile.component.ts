@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators, ɵFormGroupValue, ɵTypedOrUntyped} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../auth.service";
 import {Router} from "@angular/router";
 
@@ -10,21 +10,24 @@ import {Router} from "@angular/router";
 })
 export class ProfileComponent implements OnInit {
   profileForm!: FormGroup;
+  firstName!: FormControl<string | undefined | null>;
+  lastName!: FormControl<string | undefined | null>;
 
   constructor(private readonly authService: AuthService, private readonly router: Router) {
   }
 
   ngOnInit(): void {
-    const firstName = new FormControl(
+    this.firstName = new FormControl<string | undefined | null>(
       this.authService.currentUser?.firstName,
-      Validators.required);
-    const lastName = new FormControl(
+      [Validators.required,
+        Validators.pattern(/[aA-zZ].*/)]);
+    this.lastName = new FormControl<string | undefined | null>(
       this.authService.currentUser?.lastName,
       Validators.required);
-    console.log(this.authService.currentUser);
+
     this.profileForm = new FormGroup({
-      firstName,
-      lastName
+      firstName: this.firstName,
+      lastName: this.lastName
     });
   }
 
@@ -32,8 +35,11 @@ export class ProfileComponent implements OnInit {
     await this.router.navigate(['/events'])
   }
 
-  async save(values: any) {
-    this.authService.updateCurrentUser(values);
-    await this.router.navigate(['/events']);
+  async save() {
+    if (this.profileForm.valid) {
+      const {firstName, lastName} = this.profileForm.value;
+      this.authService.updateCurrentUser(firstName, lastName);
+      await this.router.navigate(['/events']);
+    }
   }
 }
